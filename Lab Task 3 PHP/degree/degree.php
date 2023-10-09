@@ -4,30 +4,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email</title>
+    <title>Degree</title>
 </head>
 
 <body>
-    <form method="post" action="email.php" enctype="" >
+    <form method="post" action="degree.php" enctype="">
         <fieldset>
-            <legend><b>Email</b></legend>
-            <input type="email" name="email" value="<?php if (isset($_REQUEST['email'])) echo $_REQUEST['email']; ?>" /> <hr>
+            <legend><b>Degree</b></legend>
+            <input type="checkbox" name="degree" value="<?php if (isset($_REQUEST['degree'])) echo $_REQUEST['degree']; else echo 'SSC'; ?>" /> SSC
+            <input type="checkbox" name="degree" value="<?php if (isset($_REQUEST['degree'])) echo $_REQUEST['degree']; else echo 'HSC'; ?>" /> HSC
+            <input type="checkbox" name="degree" value="<?php if (isset($_REQUEST['degree'])) echo $_REQUEST['degree']; else echo 'BSc'; ?>" /> BSc
+            <input type="checkbox" name="degree" value="<?php if (isset($_REQUEST['degree'])) echo $_REQUEST['degree']; else echo 'MSc'; ?>" /> MSc
+            <hr>
             <input type="submit" name="submit" value="Submit" />
 
         </fieldset>
     </form>
 
     <?php
-        $email = '';
-        if(isset($_REQUEST['email'])){
-            $email = $_REQUEST['email'];
+        $degree = '';
+        if(isset($_REQUEST['degree'])){
+            $degree = $_REQUEST['degree'];
         }
 
-        if( $email != '') {
-            echo 'Email is: '.$email;
+        if( $degree != '') {
+            echo 'Degree is: '.$degree;
         }
         else {
-            echo 'Please Enter Your Email';
+            echo 'Please Enter Your Degree';
         }
 
         
