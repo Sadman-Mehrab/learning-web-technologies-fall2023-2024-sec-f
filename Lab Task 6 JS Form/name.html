@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <title>Name</title>    
+</head>
+<body>
+    Name <br>
+    <input type="text" id='name' name="name" value=""/> <br>
+    <input type="button" name="click" value="Submit" onclick="validate()" />
+    <h2 id="message"></h2> 
+    <script>
+        function validate(){
+            let name = document.getElementById('name').value;
+            let message = document.getElementById('message');
+            
+            if(name == ""){
+                message.innerHTML = "Name Cannot Be Empty!";
+                return;
+            }
+
+            if(name.split(" ").length < 2){
+                message.innerHTML = "Name Must Contain Atleast Two Words!";
+                return;
+            }
+
+            for (let i = 0;i < name.length;i++){
+                if(!(name.charCodeAt(i) >= 65 && name.charCodeAt(i) <= 90) && !(name.charCodeAt(i) >= 97 && name.charCodeAt(i) <= 122) && name[i] != '.' && name[i] != '-' && name[i] != ' '){
+                    message.innerHTML = "Name Can Only Contain a-z or A-Z or dot(.) or dash(-) Only!";
+                    return;
+                }
+            }
+            
+            if(!(name.charCodeAt(0) >= 65 && name.charCodeAt(0) <= 90) && !(name.charCodeAt(0) >= 97 && name.charCodeAt(0) <= 122)){
+                message.innerHTML = "Name Must Start With A Letter!";
+                return;
+            }
+
+            message.innerHTML = "Name: '" + name + "'' Is Valid!";
+        }
+        
+    </script>
+</body>
+</html>

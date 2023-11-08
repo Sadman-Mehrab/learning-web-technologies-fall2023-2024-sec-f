@@ -1,0 +1,34 @@
+<html lang="en">
+<head>
+    <title>Email</title>    
+</head>
+<body>
+    Email <br>
+    <input type="email" id='email' name="email" value=""/> <br>
+    <input type="button" name="click" value="Submit" onclick="validate()" />
+    <h2 id="message"></h2> 
+    <script>
+        function validate(){
+            let email = document.getElementById('email').value;
+            let message = document.getElementById('message');
+            
+            if(email == ""){
+                message.innerHTML = "Email Cannot Be Empty!";
+                return;
+            }
+            
+            if(email.includes('@') && email.includes('.') &&  email.indexOf('@') + 1 < email.indexOf('.') && email.indexOf('@') != email.length - 1 && email.indexOf('.') != email.length - 1 && email.length >= 4 ){
+                message.innerHTML = "Email: '" + email + "'' Is Valid!";
+            }
+            else{
+                message.innerHTML = "Email Must Be Valid!";
+                return;
+            }
+                
+
+
+        }
+        
+    </script>
+</body>
+</html>

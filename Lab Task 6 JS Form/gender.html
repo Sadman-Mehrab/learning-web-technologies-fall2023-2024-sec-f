@@ -1,0 +1,35 @@
+<html lang="en">
+<head>
+    <title>Gender</title>    
+</head>
+<body>
+    <fieldset>
+        <legend>Gender</legend>
+        <input type="radio" name="gender" id="male" value="male" >Male
+        <input type="radio" name="gender" id="female" value="female" >Female
+        <input type="radio" name="gender" id="other" value="other" >Other
+    </fieldset>
+    <br>
+    <input type="button" name="click" value="Submit" onclick="validate()" />
+    <h2 id="message"></h2> 
+    <script>
+        function validate(){
+            
+            let isMaleSelected = document.getElementById('male').checked;
+            let isFemaleSelected = document.getElementById('female').checked;
+            let isOtherSelected = document.getElementById('other').checked;
+            let message = document.getElementById('message');
+
+            if(!isMaleSelected && !isFemaleSelected && !isOtherSelected){
+                message.innerHTML = "Please Select A Gender!";
+            }
+            else{
+                message.innerHTML = "Gender Is Valid!";
+
+            }
+
+        }
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<html lang="en">
+<head>
+    <title>Degree</title>    
+</head>
+<body>
+    <fieldset>
+        <legend>Degree</legend>
+        <input type="checkbox" name="degree" id="SSC" value="SSC"> SSC
+        <input type="checkbox" name="degree" id="HSC" value="HSC"> HSC
+        <input type="checkbox" name="degree" id="BSc" value="BSc"> BSc
+    </fieldset>
+    <br>
+    <input type="button" name="click" value="Submit" onclick="validate()" />
+    <h2 id="message"></h2> 
+    <script>
+        function validate(){
+            
+            let isSSCSelected = document.getElementById('SSC').checked;
+            let isHSCSelected = document.getElementById('HSC').checked;
+            let isBScSelected = document.getElementById('BSc').checked;
+            let message = document.getElementById('message');
+
+            
+            if(!isSSCSelected && !isHSCSelected && !isBScSelected){
+                message.innerHTML = "Please Select A Degree!";
+            }
+            else{
+                message.innerHTML = "Degree Is Valid!";
+
+            }
+
+        }
+        
+    </script>
+</body>
+</html>
