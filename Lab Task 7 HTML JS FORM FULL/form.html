@@ -1,0 +1,220 @@
+<html lang="en">
+<head>
+    <title>Person Profile</title>    
+</head>
+<body>
+    
+    <center>
+        <h2>Person Profile</h2>
+    </center>
+    
+    <fieldset>
+        <legend>Name</legend>
+        <input type="text" id='name' name="name" value=""/>
+    </fieldset>
+
+    <fieldset>
+        <legend>Email</legend>
+        <input type="email" id='email' name="email" value=""/> 
+    </fieldset>
+    
+    <fieldset>
+        <legend>Gender</legend>
+        <input type="radio" name="gender" id="male" value="male" >Male
+        <input type="radio" name="gender" id="female" value="female" >Female
+        <input type="radio" name="gender" id="other" value="other" >Other
+    </fieldset>
+    
+
+    
+    <fieldset>
+        <legend>Date Of Birth</legend>
+        <table>
+            <tr>
+                <td>dd</td>
+                <td>mm</td>
+                <td>yyyy</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="number" id='day' name="day" value=""/> /
+                </td>
+                <td>
+                    <input type="number" id='month' name="month" value=""/> /
+                </td>
+                <td>
+                    <input type="number" id='year' name="year" value=""/> 
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+
+    
+    <fieldset>
+        <legend>Degree</legend>
+        <input type="checkbox" name="degree" id="SSC" value="SSC"> SSC
+        <input type="checkbox" name="degree" id="HSC" value="HSC"> HSC
+        <input type="checkbox" name="degree" id="BSc" value="BSc"> BSc
+    </fieldset>
+
+    <fieldset>
+        <legend>Blood Group</legend>
+        <select id="bloodGroup" name="bloodGroup">
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+    </fieldset>
+    
+    
+    <fieldset>
+        <legend>Profile Picture</legend>
+        User Id 
+        <input type="number" name="userId" id="userId" value=""/>
+        <br>
+        Picture
+        <input type="file" name="profilePicture" id="profilePicture">
+
+    </fieldset>
+        
+    <hr>
+        
+        
+    <input type="button" name="submit" value="Submit" onclick="validate()" />
+    <input type="button" name="reset" value="Reset" onclick="reset()" />
+    <h2 id="message"></h2> 
+    <script>
+        function validate(){
+            let name = document.getElementById('name').value;
+
+            let email = document.getElementById('email').value;
+
+            let isMaleSelected = document.getElementById('male').checked;
+            let isFemaleSelected = document.getElementById('female').checked;
+            let isOtherSelected = document.getElementById('other').checked;
+
+            let day = document.getElementById('day').value;
+            let month = document.getElementById('month').value;
+            let year = document.getElementById('year').value;
+
+            let isSSCSelected = document.getElementById('SSC').checked;
+            let isHSCSelected = document.getElementById('HSC').checked;
+            let isBScSelected = document.getElementById('BSc').checked;
+
+            let bloodGroup = document.getElementById('bloodGroup').selectedText;
+
+            let userId = document.getElementById('userId').value;
+            let profilePicture = document.getElementById("profilePicture"); 
+
+            let message = document.getElementById('message');
+
+            // name
+            if(name == ""){
+                message.innerHTML = "Name Cannot Be Empty!";
+                return;
+            }
+
+            if(name.split(" ").length < 2){
+                message.innerHTML = "Name Must Contain Atleast Two Words!";
+                return;
+            }
+
+            for (let i = 0;i < name.length;i++){
+                if(!(name.charCodeAt(i) >= 65 && name.charCodeAt(i) <= 90) && !(name.charCodeAt(i) >= 97 && name.charCodeAt(i) <= 122) && name[i] != '.' && name[i] != '-' && name[i] != ' '){
+                    message.innerHTML = "Name Can Only Contain a-z or A-Z or dot(.) or dash(-) Only!";
+                    return;
+                }
+            }
+            
+            if(!(name.charCodeAt(0) >= 65 && name.charCodeAt(0) <= 90) && !(name.charCodeAt(0) >= 97 && name.charCodeAt(0) <= 122)){
+                message.innerHTML = "Name Must Start With A Letter!";
+                return;
+            }
+
+            //email
+            if(email == ""){
+                message.innerHTML = "Email Cannot Be Empty!";
+                return;
+            }
+            
+            if(!(email.includes('@') && email.includes('.') &&  email.indexOf('@') + 1 < email.indexOf('.') && email.indexOf('@') != email.length - 1 && email.indexOf('.') != email.length - 1 && email.length >= 4 )){
+                message.innerHTML = "Email Must Be Valid!";
+                return;
+                
+            }
+
+            //gender
+            if(!isMaleSelected && !isFemaleSelected && !isOtherSelected){
+                message.innerHTML = "Please Select A Gender!";
+                return;
+            }
+
+            //dob
+            if(day && month && year){
+                if(!(day >= 1 && day <= 31)){
+                    message.innerHTML = "Invalid Day!";
+                    return;
+                }
+                if(!(month >= 1 && month <= 12)){
+                    message.innerHTML = "Invalid Month!";
+                    return;
+                }
+                if(!(year >= 1900 && year <= 2016)){
+                    message.innerHTML = "Invalid Year!";
+                    return;
+                }
+
+            }else{
+                message.innerHTML = "Date Of Birth Cannot Be Empty!";
+                return;
+            }
+
+            //degree
+            if(!isSSCSelected && !isHSCSelected && !isBScSelected){
+                message.innerHTML = "Please Select A Degree!";
+                return;
+            }
+                
+
+            // blood group
+            if(bloodGroup == 0){
+                message.innerHTML = "Please Select A Blood Group!";
+                return;
+            }
+
+            //profile picture
+            if(!userId){
+                message.innerHTML = "UserId Cannot Be Empty!";
+                return;
+            }
+            if(userId <= 0){
+                message.innerHTML = "UserId Must Be Positive!";
+                return;
+            }
+            if(profilePicture.files.length == 0){
+                message.innerHTML = "Please Select a Picture!";
+                return;
+            }
+
+
+
+            message.innerHTML = "Registration Successful!";
+
+
+        }
+        function reset(){
+            window.location.reload(true);
+        }
+
+
+
+
+        
+    </script>
+</body>
+</html>
