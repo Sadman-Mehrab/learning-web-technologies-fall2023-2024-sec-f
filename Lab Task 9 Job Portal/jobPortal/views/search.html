@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Employer</title>
+</head>
+
+<body>
+
+    <center>
+        <h2>
+            Search Employer
+        </h2>
+
+        Employer Name: <input type="text" id='employerName' name="employerName" value="" />
+
+        <input type="button" name="click" value="Search" onclick="search()" />
+
+
+        <table id="employerInformation">
+
+        </table>
+        <h1 id="warning"></h1>
+    </center>
+
+
+    <script>
+        function search() {
+            let employerName = document.getElementById('employerName').value;
+            let xhttp = new XMLHttpRequest();
+
+
+            xhttp.open('POST', '../controllers/searchCheck.php', true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    let response = this.responseText;
+                    if(response == "Invalid Employer Name!"){
+                        document.getElementById('warning').innerHTML = response;
+                        document.getElementById('employerInformation').innerHTML = "";
+                        return;
+                    }
+
+                    let employerInfo = response.split(', ');
+                    let employerInformationTable = "";
+                    employerInformationTable += `<tr> <td>Employer Name: </td> <td>${employerInfo[0]}</td> </tr>`;
+                    employerInformationTable += `<tr> <td>Company Name: </td> <td>${employerInfo[1]}</td> </tr>`;
+                    employerInformationTable += `<tr> <td>Contact Number: </td> <td>${employerInfo[2]}</td> </tr>`;
+                    employerInformationTable += `<tr> <td>User Name: </td> <td>${employerInfo[3]}</td> </tr>`;
+                    employerInformationTable += `<tr> <td>Password: </td> <td>${employerInfo[4]}</td> </tr>`;
+
+                    document.getElementById('employerInformation').innerHTML = employerInformationTable;
+                    document.getElementById('warning').innerHTML = "";
+                }
+            }
+
+            xhttp.send('employerName=' + employerName);
+        }
+    </script>
+</body>
+
+</html>
