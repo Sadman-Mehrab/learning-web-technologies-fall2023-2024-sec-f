@@ -23,7 +23,7 @@
 
         $employeeName = $employee['employeeName'];
         $contactNo = $employee['contactNo'];
-        $userName = $employee['userName'];
+        $userName = $employee['username'];
         $password = $employee['password'];
         $type = $employee['type'];
 
@@ -37,7 +37,7 @@
         }
     }
 
-    function getEmployee($userName){
+    function getEmployees($userName){
         $con = getConnection();
         $sql = "select * from Users where userName='{$userName}'";
         $result = mysqli_query($con, $sql);
@@ -46,8 +46,8 @@
             return NULL;
         }
 
-        $user = mysqli_fetch_assoc($result);
-        return $user;
+        
+        return $result;
     }
     
 
@@ -70,7 +70,7 @@
         
         $employeeName = $employee['employeeName'];
         $contactNo = $employee['contactNo'];
-        $userName = $employee['userName'];
+        $userName = $employee['username'];
         $password = $employee['password'];
         $type = $employee['type'];
         

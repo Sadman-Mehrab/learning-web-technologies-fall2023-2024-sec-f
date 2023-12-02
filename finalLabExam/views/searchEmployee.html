@@ -1,0 +1,48 @@
+<html lang="en">
+<head>
+    <title>Search Employee</title>
+    
+</head>
+<body>
+
+        <input type="text" id='term' name="term" value=""  />
+        <input type="button" name="click" value="submit" onclick="search()" />
+
+        <table id="result" border=1></table>
+
+        <script>
+            function search(){
+                let term = document.getElementById('term').value;
+                let xhttp = new XMLHttpRequest();
+
+                xhttp.open('POST', '../controllers/getEmployee.php', true);
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.onreadystatechange = function(){
+                    if(this.readyState == 4 && this.status == 200){
+                        //alert(this.responseText);
+                        let users = JSON.parse(this.responseText);
+                        let tableContent = `<tr>
+                                                <td>Employee Name</td>
+                                                <td>Contact No</td>
+                                                <td>Username</td>
+                                                <td>Password</td>
+                                            </tr>`;
+
+                        for (let i=0;i<users.length;i++){
+                            tableContent += `<tr>
+                                                <td>${users[i].employeeName}</td>
+                                                <td>${users[i].contactNo}</td>
+                                                <td>${users[i].userName}</td>
+                                                <td>${users[i].password}</td>
+                                            </tr>`;
+                        }
+
+                        document.getElementById('result').innerHTML = tableContent;
+                    }
+                }
+
+                xhttp.send('term='+term);
+            }
+        </script>
+</body>
+</html>
