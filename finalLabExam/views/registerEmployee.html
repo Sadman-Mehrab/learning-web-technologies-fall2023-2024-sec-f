@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Employee</title>
+</head>
+<body>
+    <center>
+        <form>
+            <table border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>
+                        <fieldset>
+                            <legend><h3>Register Employee</h3></legend>
+                            Employee Name<br/>
+                            <input type="text" id="employeeName" value=""><br/>
+                            Contact No<br/>
+                            <input type="text" id="contactNo" value=""><br/>
+                            Username<br/>
+                            <input type="text" id="username" value=""><br/>
+                            Password<br/>
+                            <input type="password" id="password" value=""><br/>
+                            
+                    
+                            <hr/>
+                            <input type="submit" name="submit" value="Submit" onclick="return validate()">
+                            
+                        </fieldset>
+                    </td>
+                </tr>                                
+            </table>
+        </form>
+        </center>
+        <script>
+            function validate(){
+                let employeeName = document.getElementById('employeeName').value;
+                let contactNo = document.getElementById('contactNo').value;
+                let username = document.getElementById('username').value;
+                let password = document.getElementById('password').value;
+
+                if( employeeName == "" || contactNo == "" || username == "" || password == ""){
+                    return false;
+                }
+            }
+        </script>
+</body>
+</html>
+
+
+
+
+            
