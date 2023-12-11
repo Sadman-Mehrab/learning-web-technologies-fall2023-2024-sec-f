@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Block User</title>
+</head>
+<body>
+	<center>
+		<form method="post" action="../controllers/blockUserCheck.php" enctype="" >
+			<table border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td>
+						<fieldset>
+							<legend><h3>Block User</h3></legend>
+							Username<br/>
+							<input type="text" name="userName" id="userName" value=""><br/>                               
+
+							<hr/>
+							<input type="submit" name="submit" value="Submit" onclick="return validate()" >
+						</fieldset>
+					</td>
+				</tr>                                
+			</table>
+		</form>
+		
+		</center>
+
+		<script>
+			function validate(){
+                let userName = document.getElementById('userName').value;
+
+                
+                if(userName == ""){
+                    alert('Username Cannot Be Empty');
+                    return false;
+                }
+                
+               
+                    
+                return true;
+
+            }
+		</script>
+</body>
+</html>
+

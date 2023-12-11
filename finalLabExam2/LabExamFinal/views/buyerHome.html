@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Home</title>
+</head>
+<body>
+    <center>
+        <h2>Buyer Home</h2>
+
+        <div id="contents">
+            <a href="products.php">View Products</a> <br>
+            <a href="blockUser.html">Block User</a> <br>
+            <a href="profile.php">Profile</a>
+        </div>
+
+    </center>
+
+    <script>
+        function checkBlocked(){
+            let xhttp = new XMLHttpRequest();
+            xhttp.open('GET', '../controllers/isUserBlocked.php', true);
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    if(this.responseText == "True"){
+                        document.getElementById('contents').innerHTML = "You Were Blocked!";
+                    }
+                }
+            }
+
+            xhttp.send();
+        }
+        // checkBlocked();
+    </script>
+</body>
+</html>
